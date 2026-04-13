@@ -1,0 +1,106 @@
+BEGINNER C PROGRAMMING ASSIGNMENTS
+
+General rules (apply to all assignments)
+1. Use only standard C libraries.
+2. Write clean, readable code with meaningful variable names.
+3. Add brief comments only where logic is not obvious.
+4. Check for common errors (for example: malloc failure, file open failure).
+5. Compile with warnings enabled: gcc -Wall -Wextra  <file>.c -o <program>
+
+--------------------------------------------------
+A. Parameter Passing (pass by reference)
+Suggested file: pass_by_reference.c
+
+Goal
+Compute the expression:
+(a + b) + (c * d)
+using functions that return results through pointers.
+
+Requirements
+1. In main, declare integers: a, b, c, d.
+2. Create:
+	- void sum(int x, int y, int *result)
+	- void multiply(int x, int y, int *result)
+3. sum() must store x + y in *result.
+4. multiply() must store x * y in *result.
+5. In main:
+	- Call sum(a, b, &sum_result)
+	- Call multiply(c, d, &mul_result)
+	- Compute final_result = sum_result + mul_result
+6. Print all intermediate and final values clearly.
+
+Expected output format (example)
+a = 2, b = 3, c = 4, d = 5
+sum(a, b) = 5
+multiply(c, d) = 20
+final = 25
+
+--------------------------------------------------
+B. Pointers (triple pointer)
+Suggested file: pointers.c
+
+Goal
+Understand multi-level indirection using int*, int**, and int***.
+
+Requirements
+1. Declare an integer variable (example: int value = 42;).
+2. Create:
+	- int *p1 = &value;
+	- int **p2 = &p1;
+	- int ***p3 = &p2;
+3. Print:
+	- value directly
+	- value through *p1
+	- value through **p2
+	- value through ***p3
+4. Also print addresses of value, p1, p2, and p3.
+5. Draw a box-and-arrow diagram on paper (or as a text diagram in comments) showing links.
+
+Success criteria
+All printed values match and equal the original integer.
+
+--------------------------------------------------
+C. Arrays (dynamic 2D with malloc + pointer arithmetic)
+Suggested file: array.c
+
+Goal
+Create and use a dynamic 4x4 matrix using pointer arithmetic only.
+
+Requirements
+1. Allocate memory for 16 integers using malloc.
+2. Treat it as a 4x4 matrix.
+3. Fill values from 1 to 16 using nested loops and pointer arithmetic:
+	*(*(arr + i * 4 + j)) is NOT valid for int* arr
+	Correct form for int* arr is: *(arr + i * 4 + j)
+4. Print matrix in this layout:
+1  2  3  4
+5  6  7  8
+9  10 11 12
+13 14 15 16
+5. Do not use arr[i][j].
+6. Free allocated memory at the end.
+
+Success criteria
+Matrix is correct, pointer arithmetic is used, and memory is freed.
+
+--------------------------------------------------
+D. Strings (manual case conversion)
+Suggested file: string.c
+
+Goal
+Write your own case-conversion functions using ASCII math (+/- 32).
+
+Requirements
+1. Create:
+	- void toLowercase(char *s)
+	- void toUppercase(char *s)
+2. In toLowercase:
+	- If character is between 'A' and 'Z', add 32.
+3. In toUppercase:
+	- If character is between 'a' and 'z', subtract 32.
+4. Iterate until '\0'.
+5. Do not use tolower(), toupper(), or other ctype helpers.
+6. In main, test using at least one mixed-case sentence.
+
+Success criteria
+Functions correctly convert alphabetic characters and leave other characters unchanged.
